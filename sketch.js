@@ -1,6 +1,6 @@
 let s;
 const scl = 20;
-
+let curDir;
 
 let food;
 
@@ -30,7 +30,6 @@ function draw() {
 
     if (s.eat(food)) {
         pickLocation();
-        // s.total++
     }
 
     fill(255, 0, 100);
@@ -38,13 +37,20 @@ function draw() {
 }
 
 function keyPressed() {
-    if (keyCode === UP_ARROW) {
+
+    console.log(keyCode, curDir)
+
+    if (keyCode === UP_ARROW && curDir != "down") {
+        curDir = "up";
         s.dir(0, -1);
-    } else if (keyCode === DOWN_ARROW) {
+    } else if (keyCode === DOWN_ARROW && curDir != "up") {
+        curDir = "down";
         s.dir(0, 1);
-    } else if (keyCode === LEFT_ARROW) {
+    } else if (keyCode === LEFT_ARROW && curDir != "right") {
+        curDir = "left";
         s.dir(-1, 0);
-    } else if (keyCode === RIGHT_ARROW) {
+    } else if (keyCode === RIGHT_ARROW && curDir != "left") {
+        curDir = "right";
         s.dir(1, 0);
     }
 }
